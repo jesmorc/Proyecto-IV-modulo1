@@ -1,5 +1,4 @@
-(_nombre aún por decidir entre las dos opciones_)
-# Work-in-out / Sportchan
+# Work-in-out
 
 ### Plataforma enfocada a los deportistas, híbrido entre red social y tablón de eventos. Proyecto relacionado con la asignatura DAI.
 
