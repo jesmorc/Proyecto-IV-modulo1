@@ -15,4 +15,4 @@ Además , la plataforma actuará como una especia de red social, siendo capaz ca
 ## Descripción del Módulo 1
 
 Este módulo se centrará en el servidor de bases de datos, el cual necesitaremos para almacenar los datos de la aplicación, como los usuarios, eventos, comentarios, etc..
-La tecnología usada para la base de datos en sí será SQLite.
+La tecnología usada para la base de datos en sí será MySQL.
