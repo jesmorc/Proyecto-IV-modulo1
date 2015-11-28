@@ -1,7 +1,7 @@
 # Work-in-out
 
 Jesús García Godoy [![Build Status](https://travis-ci.org/jesmorc/Proyecto-IV-modulo1.svg)](https://travis-ci.org/jesmorc/Proyecto-IV-modulo1)
-#PRIMER HITO#
+
 ### Plataforma enfocada a los deportistas, híbrido entre red social y tablón de eventos. Proyecto relacionado con la asignatura DAI.
 ## Descripción
 
@@ -53,7 +53,6 @@ El proyecto ha sido inscrito en el certamen de proyectos libres de la UGR.
 
 
 
-#SEGUNDO HITO#
 #Desarrollo basado en pruebas
 #Avances en el proyecto
 Para un primer avance en el proyecto hemos creado una pantalla de login de usuario y de registro, con su hoja de estilo correspondiente.
