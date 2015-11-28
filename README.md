@@ -1,6 +1,6 @@
 # Work-in-out
 
-Jesús García Godoy [![Build Status](https://travis-ci.org/jesmorc/Proyecto-IV-modulo1.svg)](https://travis-ci.org/jesmorc/Proyecto-IV-modulo1)
+Jesús García Godoy [![Build Status](https://travis-ci.org/jesmorc/Proyecto-IV-modulo1.svg)](https://travis-ci.org/jesmorc/Proyecto-IV-modulo1) [![Snap-CI](https://snap-ci.com/jesmorc/Proyecto-IV-modulo1/branch/master/build_image)](https://snap-ci.com/jesmorc/Proyecto-IV-modulo1/branch/master) [![Heroku](https://www.herokucdn.com/deploy/button.png)](https://work-in-out-jesmorc.herokuapp.com/)
 
 ### Plataforma enfocada a los deportistas, híbrido entre red social y tablón de eventos. Proyecto relacionado con la asignatura DAI.
 ## Descripción
