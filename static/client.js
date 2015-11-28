@@ -1,6 +1,3 @@
-/**
- * Created by davsa410 on 2015-01-27.
- */
 displayView = function () {
     var x;
 

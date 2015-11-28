@@ -163,3 +163,88 @@ Ahora, tras haber preparado los tests y el archivo ".travis.yml" procedemos a ha
 
 Como vemos en la siguiente captura, el push se ha realizado correctamente, se han pasado los tests y han concluido sin problemas:
 ![travis2](http://i.imgur.com/nyp39lR.png)
+
+
+# Despliegue en PaaS: Heroku
+El PaaS elegido ha sido Heroku ya que para lo que se va a usar en la asignatura, sus funcionalidades gratuitas son suficientes, además de ser compatible con *Python* e integrable con *GitHub*. 
+
+Primero se crea el archivo *Procfile*, que contiene la orden de ejecución de la aplicación web.
+
+```
+web: python runserver.py
+
+```
+
+El siguiente paso es indicar las dependencias (y sus versiones) creando el archivo *requirements.txt*. Contiene lo siguiente
+
+
+```
+Flask==0.10.1
+Flask-WTF==0.12
+MySQL-python==1.2.3
+Jinja2==2.8
+MarkupSafe==0.23
+WTForms==2.0.2
+
+```
+
+Desde el terminal nos logueamos en Heroku con nuestras credenciales de esta manera:
+
+![heroku_login](http://i.imgur.com/DO0jIcz.png)
+
+Nos situamos en el directorio de la aplicación en sí y procedemos a crear la app en Heroku propiamente dicha, indicando el nombre como parámetro:
+
+![heroku_create](http://i.imgur.com/0mK68Ed.png)
+
+
+##Integración con Heroku
+
+Conectamos la app de Heroku con nuestro repo de GitHub (también activando la opción de pasar primero los tests) y activamos el despliegue automático.
+![heroku_integracion_github](http://i.imgur.com/32fkLPd.png)
+
+Tras esto ya podemos commitear y tras hacerlo hay que hacer un *push* a la rama de Heroku mediante:
+
+```
+git push heroku master
+```
+![heroku_push](http://i.imgur.com/F2wK9Hk.png)
+
+Escalamos el *dynos* de Heroku para poder visualizarlo con el navegador mediante:
+
+```
+heroku ps:scale web=1
+
+```
+
+Abrimos la app en una pestaña del navegador con:
+
+```
+heroku open
+
+```
+
+Link de la app: [work-in-out-jesmorc](https://work-in-out-jesmorc.herokuapp.com)
+
+
+##Integración con SNAP-CI
+
+VInculamos con GitHub autorizando la aplicación y ya podemos seleccionar nuestro repositorio para añadirlo a Snap-CI.
+
+Configuramos nuestras *pipelines*:
+
+La primera es la que instalará las dependencias:
+![snap_ci_dependencies](http://i.imgur.com/sXAULbU.png)
+
+La segunda la que conecta con Heroku:
+![snap_ci_deploy](http://i.imgur.com/U8eBMgY.png)
+
+Vemos como ambas funcionan correctamente:
+![pipelines_passed](http://i.imgur.com/Gt6TKiy.png)
+
+
+
+## Progreso del proyecto
+
+Por ahora está hecho el login de la app , junto con un formulario de registro con sus correspondientes comprobaciones.
+
+Para verlo se puede visualizar en la propia *dynos* de Heroku: [work-in-out-jesmorc](https://work-in-out-jesmorc.herokuapp.com)
