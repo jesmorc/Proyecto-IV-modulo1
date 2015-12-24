@@ -242,6 +242,108 @@ Vemos como ambas funcionan correctamente:
 ![pipelines_passed](http://i.imgur.com/Gt6TKiy.png)
 
 
+##Entorno de pruebas : Docker
+
+Se usa Docker como plataforma que automatiza el despliegue de la aplicación dentro de contenedores software, de manera que pueda probarse en un entorno aislado antes de desplegarla a producción.
+
+[LINK IMAGEN DOCKER](https://hub.docker.com/r/jesmorc/proyecto-iv/)
+
+Para la creación de la imagen, Docker usa un fichero dentro del directorio de la aplicación llamado Dockerfile, que contiene lo siguiente:
+
+```
+FROM ubuntu:latest
+
+#Autor
+MAINTAINER Jesus Garcia Godoy <jesusgg90@hotmail.com>
+
+#Actualizar Sistema Base
+RUN sudo apt-get update
+#Descargar aplicacion
+RUN sudo apt-get install -y git
+RUN sudo git clone https://github.com/jesmorc/Proyecto-IV-modulo1
+
+#Instalar paquetes necesarios
+RUN sudo apt-get install -y python-setuptools
+RUN sudo apt-get -y install python-dev
+RUN sudo apt-get -y install build-essential
+RUN sudo apt-get -y install python-psycopg2
+RUN sudo apt-get -y install libpq-dev
+RUN sudo apt-get install -y libmysqlclient-dev
+RUN sudo apt-get install -y python-dev
+RUN sudo easy_install pip
+RUN sudo pip install --upgrade pip
+RUN sudo pip install MySQL-python
+RUN sudo pip install Flask
+RUN sudo pip install nose
+
+#Instalar la app
+RUN cd Proyecto-IV-modulo1 && sudo pip install -r requirements.txt
+```
+
+En el directorio del repo, creamos una imagen con:
+```
+sudo docker build -t jesmorc_iv .
+``` 
+Esto cogerá por defecto el fichero *Dockerfile* si existe, tal y como vemos aquí:
+
+![docker_jesmorc_iv](http://i.imgur.com/oczpPyj.png)
+
+Ahora, cargamos la imagen con:
+```
+sudo docker run -t -i jesmorc_iv /bin/bash
+```
+
+Estando dentro, comprobamos la IP, porque luego la usaremos:
+
+![docker_jesmorc_iv_ifconfig](http://i.imgur.com/X9EL12o.png)
+
+Ejecutamos la aplicación(desde dentro):
+
+![workinout_runserver](http://i.imgur.com/0GPpGwn.png)
+
+En el navegador, en la dirección *http://172.17.0.19:5000/* (IP vista antes)podemos ver que la app funciona bien:
+
+![workinout_working](http://i.imgur.com/iBOyF0T.png)
+
+Hecho esto, procedemos a crear nuestra imagen en la página web de docker. Tras registrarme en su página me he creado un repositorio con *visibilidad pública*.
+
+![docker_register](http://i.imgur.com/diwrPTM.png)
+
+![docker_created_repo](http://i.imgur.com/KEHDXIW.png)
+
+Ahora, introduzco el siguiente comando:
+```
+sudo docker build -f Dockerfile -t jesmorc/proyecto-iv:latest --no-cache=true ./
+```
+
+Me logueo con las credenciales de Docker:
+
+```
+sudo docker login
+```
+
+Y finalmente hago el push al repositorio de Docker:
+
+```
+sudo docker push jesmorc/proyecto-iv:latest
+```
+
+[**ENLACE A DOCKER DEL PROYECTO**](https://hub.docker.com/r/jesmorc/proyecto-iv/)
+
+Para una mayor eficiencia he procedido a crear el siguiente script, el cual se encuentra en la carpeta *scripts* y se llama [*docker.sh*](https://github.com/jesmorc/Proyecto-IV-modulo1/blob/master/scripts/docker.sh). Contiene lo siguiente:
+
+```
+#!/bin/bash
+
+#Actualizamos e instalamos docker
+sudo apt-get update
+sudo apt-get install -y docker-engine
+
+#Descargar la imagen
+sudo docker pull jesmorc/proyecto-iv:latest
+#Ejecuta la imagen
+sudo docker run -i -t jesmorc/proyecto-iv:latest /bin/bash
+```
 
 ## Progreso del proyecto
 
